@@ -11,32 +11,38 @@ export class App extends Component {
     bad: 0,
   };
 
-  // handleFeedback = evt => {
-  //   this.setState(prevState => ({ [evt]: prevState[evt] + 1 }));
-  // };
-
-  handleFeedback = event => {
-    const { name } = event.currentTarget;
+  handleFeedback = evt => {
     this.setState(prevState => ({
-      [name]: prevState[name] + 1,
+      [evt.target.name]: prevState[evt.target.name] + 1,
     }));
-    this.countTotalFeedback();
-    this.countPositiveFeedbackPercentage();
   };
 
   countTotalFeedback = () => {
     return Object.values(this.state).reduce((acc, num) => acc + num, 0);
   };
-  // countTotalFeedback = () => {
-  //   let total = this.state.good + this.state.neutral + this.state.bad;
-  //   return total;
-  // };
 
   countPositiveFeedbackPercentage = () => {
     return this.countTotalFeedback() === 0
       ? 0
       : Math.round((this.state.good / this.countTotalFeedback()) * 100);
   };
+
+  // *****training code*****
+
+  // handleFeedback = event => {
+  //   const { name } = event.currentTarget;
+  //   this.setState(prevState => ({
+  //     [name]: prevState[name] + 1,
+  //   }));
+  //   this.countTotalFeedback();
+  //   this.countPositiveFeedbackPercentage();
+  // };
+
+  // countTotalFeedback = () => {
+  //   let total = this.state.good + this.state.neutral + this.state.bad;
+  //   return total;
+  // };
+
   // countPositiveFeedbackPercentage = () => {
   //   if (this.countTotalFeedback() === 0) {
   //     return 0;
